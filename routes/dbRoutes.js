@@ -1,3 +1,5 @@
+var mongo = require('mongodb');
+
 var userModel = require("../models/userModel.js");
 var reminderModel = require("../models/reminderModel.js");
 const trivia = require("../models/triviaAPI.js")
@@ -8,22 +10,54 @@ exports.init = function(app) {
 
   app.get("/", checkAuthentication, index);
   app.get("/question", checkAuthentication, getQuestion);
+  app.get("/reminders", checkAuthentication, getReminders);
+  app.get("/reminder/delete/:id", checkAuthentication, deleteReminder);
+  app.post("/reminder/create", checkAuthentication, createReminder);
 
+  app.post("/user/create", createUser);
   app.post("/login",
     passport.authenticate("local", {
       failureRedirect: "/login.html",
       successRedirect: "/"
     })
   );
-  app.post("/user/create", createUser);
-
-  app.get("/logout", doLogout);
+  app.get("/logout", checkAuthentication, doLogout);
 }
 
 index = function(req, res) {
   res.render("index", {title: "Trivia Game"})
 }
 
+// Reminders
+getReminders = function(req, res) {
+  reminderModel.retrieve({"user_id": req.session.passport.user._id}, function(data) {
+    res.render("reminders", {title: "Trivia Game", reminders: data})
+  });
+}
+
+createReminder = function(req, res) {
+  if (Object.keys(req.body).length == 0) {
+    res.render("message", {title: "Trivia Game", obj: "No create body found"});
+    return;
+  }
+
+  reminderModel.create(req.body, function(result) {
+    console.log(result ? "Create Successful" : "Create unsuccsessful");
+  });
+}
+
+deleteReminder = function(req, res){
+  var o_id = new mongo.ObjectID(req.params.id);
+  var filter = {"_id": o_id};
+  console.log(filter);
+
+  reminderModel.delete(filter, function(status){
+    console.log(status);
+    res.redirect("/reminders");
+  });
+}
+
+// Questions
 getQuestion = function(req, res) {
   if(token == "") {
     trivia.getSessionToken(function(result) {
@@ -35,19 +69,6 @@ getQuestion = function(req, res) {
   }
 }
 
-createUser = function(req, res) {
-  console.log("Body: " + req.body);
-
-  if (Object.keys(req.body).length == 0) {
-    res.render("message", {title: "Trivia Game", obj: "No create body found"});
-    return;
-  }
-
-  userModel.create(req.body, function(result) {
-    res.redirect("/login.html");
-  });
-}
-
 function getQuestionHelper(req, res) {
   trivia.getQuestions(token, req.query.category, function(data) {
     res.render("question", {title: "Trivia Game", 
@@ -55,8 +76,9 @@ function getQuestionHelper(req, res) {
       type: data.results[0].type,
       answers: randomizeAnswers(data.results[0]),
       answer: data.results[0].correct_answer,
-      category: req.query.category
-      });
+      category: req.query.category,
+      user_id: req.session.passport.user._id
+    });
   });
 }
 
@@ -65,6 +87,18 @@ function randomizeAnswers(question) {
   answers.push(question.correct_answer);
   
   return answers;
+}
+
+// Users and Authentication
+createUser = function(req, res) {
+  if (Object.keys(req.body).length == 0) {
+    res.render("message", {title: "Trivia Game", obj: "No create body found"});
+    return;
+  }
+
+  userModel.create(req.body, function(result) {
+    res.redirect("/login.html");
+  });
 }
 
 function checkAuthentication(req, res, next) {
@@ -133,30 +167,6 @@ deleteUser = function(req, res){
   });
 }
 
-createReminder = function(req, res) {
-  if (Object.keys(req.body).length == 0) {
-    res.render("message", {title: "Trivia Game", obj: "No create body found"});
-    return;
-  }
-
-  reminderModel.create(req.body, function(result) {
-    var success = (result ? "Create Successful" : "Create unsuccsessful");
-    res.render("message", {title: "Trivia Game", obj: success});
-  });
-}
-
-retrieveReminder = function(req, res) {
-  reminderModel.retrieve(req.query, function(data) {
-    if (data.length) {
-      res.render("results", {title: "Trivia Game", obj: data})
-    }
-
-    var message = "No documents with "+JSON.stringify(req.query)+
-                  " in collection " + req.params.collection + " found.";
-    res.render("message", {title: "Trivia Game", obj: message});
-  });
-}
-
 updateReminder = function(req, res){
   if(!req.body.update) {
     res.render("message", {title: "Trivia Game", obj: "No update operation defined"});
@@ -167,19 +177,6 @@ updateReminder = function(req, res){
   var update = JSON.parse(req.body.update);
 
   reminderModel.update(filter, update, function(status){
-    res.render("message", {title: "Trivia Game", obj: status});  
-  });
-}
-
-deleteReminder = function(req, res){
-  if(!req.body.delete) {
-    res.render("message", {title: "Trivia Game", obj: "No delete operation defined"});
-    return;
-  }
-
-  var filter = req.body.find ? JSON.parse(req.body.find) : {};
-
-  reminderModel.delete(filter, function(status){
     res.render("message", {title: "Trivia Game", obj: status});  
   });
 }

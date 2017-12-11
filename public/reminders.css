@@ -17,7 +17,7 @@ a {
 .container {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 0.5fr 0.25fr 1fr 1fr;
+  grid-template-rows: 0.5fr 0.25fr 1fr 5fr;
   grid-gap: 20px;
   justify-content: center;
 }
@@ -46,17 +46,9 @@ a {
   align-self: center;
 }
 
-#categories {
+#reminders {
   grid-row-start: 4;
-  grid-column-start: 2;
-  grid-column-end: 12;
-
-  display: grid;
-  grid-template-columns: repeat(5, 2fr);
-}
-
-#categories a {
-  border-radius: 15px;
-  font-size: 20px;
-  border: 1px solid #1695A3;
+  grid-column-start: 3;
+  grid-column-end: 11; 
+  text-align: center;
 }

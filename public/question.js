@@ -13,7 +13,8 @@ $(document).ready(function() {
     }
   });
 
-  $(".close").click(function(){
-    $("#modal").hide();
+  $("input").click(function() {
+    $("#submit").hide();
+    alert("Reminder Created!");
   });
 });
