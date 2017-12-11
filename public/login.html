@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> SR Trivia Login </title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+  <form class="container" action="/login" method="post">
+    <div id="navbar">
+      <a href="/"><h1 id="title">SR Trivia</h1></a> 
+    </div>
+    <div id="username">
+      <label>Username:</label>
+      <input type="text" name="username" required="true"/>
+    </div>
+    <div id="password">
+      <label>Password:</label>
+      <input type="password" name="password" required="true"/>
+    </div>
+    <div id="submit">
+      <input type="submit" value="Log In"/>
+    </div>
+    <div id="create">
+      <a href="/create.html" class="button">Create User</a>
+    </div>
+  </form>
+</body>
+</html>

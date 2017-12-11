@@ -15,6 +15,21 @@ exports.create = function(data, callback) {
   });
 }
 
+exports.findByUsername = function(username, callback) {
+  console.log(username);
+  mongoDB.collection(collection).find({"username": username}).toArray(function(err, docs) {
+    callback(err, docs[0]);
+  });
+}
+
+exports.findById = function(id, callback) {
+  mongoDB.collection(collection).find(id).toArray(function(err, docs) {
+    callback(err, docs);
+  });
+}
+
+
+
 exports.retrieve = function(query, callback) {
   mongoDB.collection(collection).find(query).toArray(function(err, docs) {
     if (err) doError(err);
@@ -37,8 +52,4 @@ exports.delete = function(filter, callback) {
     var success = (status.result.n == 1 ? true : false);
     callback(success);
   });
-}
-
-var doError = function(e) {
-  throw new Error(e);
 }

@@ -13,6 +13,8 @@ app.use(express.static(__dirname + "/public"));
 app.set("views", __dirname + "/views");
 app.set("view engine", "ejs");
 
+app.set("passport", require("./models/authentication.js").init(app));
+
 fs.readdirSync("./routes").forEach(function (file){
     if(path.extname(file)==".js") {
         require("./routes/" + file).init(app);

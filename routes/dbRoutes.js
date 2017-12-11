@@ -1,24 +1,23 @@
-var questionModel = require("../models/questionModel.js");
 var userModel = require("../models/userModel.js");
 var reminderModel = require("../models/reminderModel.js");
 const trivia = require("../models/triviaAPI.js")
-const user = "/user", question = "/question", reminder = "/reminder";
 var token = "";
 
 exports.init = function(app) {
-  app.get("/", index);
+  var passport = app.get('passport');
 
-  app.get(question, getQuestion);
+  app.get("/", checkAuthentication, index);
+  app.get("/question", checkAuthentication, getQuestion);
 
-  app.put(user, createUser);
-  app.get(user, retrieveUser);
-  app.post(user, updateUser);
-  app.delete(user, deleteUser);
+  app.post("/login",
+    passport.authenticate("local", {
+      failureRedirect: "/login.html",
+      successRedirect: "/"
+    })
+  );
+  app.post("/user/create", createUser);
 
-  app.put(reminder, createReminder);
-  app.get(reminder, retrieveReminder);
-  app.post(reminder, updateReminder);
-  app.delete(reminder, deleteReminder);
+  app.get("/logout", doLogout);
 }
 
 index = function(req, res) {
@@ -34,6 +33,19 @@ getQuestion = function(req, res) {
   } else {
     getQuestionHelper(req, res);
   }
+}
+
+createUser = function(req, res) {
+  console.log("Body: " + req.body);
+
+  if (Object.keys(req.body).length == 0) {
+    res.render("message", {title: "Trivia Game", obj: "No create body found"});
+    return;
+  }
+
+  userModel.create(req.body, function(result) {
+    res.redirect("/login.html");
+  });
 }
 
 function getQuestionHelper(req, res) {
@@ -55,17 +67,32 @@ function randomizeAnswers(question) {
   return answers;
 }
 
-createUser = function(req, res) {
-  if (Object.keys(req.body).length == 0) {
-    res.render("message", {title: "Trivia Game", obj: "No create body found"});
-    return;
+function checkAuthentication(req, res, next) {
+  if (req.isAuthenticated()) {
+    next();
+  } else {
+    res.redirect("/login.html");
   }
-
-  userModel.create(req.body, function(result) {
-    var success = (result ? "Create Successful" : "Create unsuccsessful");
-    res.render("message", {title: "Trivia Game", obj: success});
-  });
 }
+
+function doLogout(req, res) {
+  req.logout();
+  res.redirect("/login.html");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 retrieveUser = function(req, res) {
   userModel.retrieve(req.query, function(data) {

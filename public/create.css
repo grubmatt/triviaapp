@@ -1,0 +1,80 @@
+body {
+  font-family: "Helvetica", "Arial", sans-serif;
+}
+
+h1 {
+  color: #2F343B;
+}
+
+a {
+  text-decoration: none;
+  justify-self: center;
+  align-self: center;
+  color: #2F343B;
+}
+
+input {
+  color: #2F343B;
+  font-size: 20px;
+}
+
+a.button {
+  text-decoration: none;
+  font-size: 13px;
+  padding: 1em;
+  border-radius: 3px;
+  border: 2px solid paleturquoise;
+  background-color: paleturquoise ;
+  color:  #2F343B;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: 0.5fr .6fr .6fr .6fr .8fr;
+  grid-gap: 20px;
+}
+
+#navbar {
+  grid-column-start: 1;
+  grid-column-end: 13; 
+  border-bottom: 3px solid #1695A3;
+}
+
+#navbar a {
+  font-size: 20px;
+}
+
+#username {
+  grid-row-start: 3;
+  grid-column-start: 4;
+  grid-column-end: 6; 
+  justify-self: center;
+  align-self: center;
+}
+
+#password {
+  grid-row-start: 4;
+  grid-column-start: 4;
+  grid-column-end: 6;
+  justify-self: center;
+  align-self: center;
+}
+
+#submit {
+  grid-row-start: 5;
+  grid-column-start: 4;
+  grid-column-end: 6;
+  justify-self: center;
+  align-self: center;
+}
+
+#submit input {
+  text-decoration: none;
+  font-size: 13px;
+  padding: 1em;
+  border-radius: 3px;
+  border: 2px solid lightgreen;
+  background-color: lightgreen;
+  color:  #2F343B;
+}
