@@ -1,0 +1,19 @@
+/*
+# >>>>>>>>>> test CREATE success by adding a user, reminder
+curl -i -X PUT -d "first_name=Matt&last_name=Gruber&password=123456&email=matt@example.com" https://triviaapp-uzgdgxzwnd.now.sh/user
+curl -i -X PUT -d "question_id=1&state=1" https://triviaapp-uzgdgxzwnd.now.sh/reminder
+
+# >>>>>>>>>> test GET 
+curl -i -X GET  -d "first_name=Matt&last_name=Gruber" https://triviaapp-uzgdgxzwnd.now.sh/user
+curl -i -X GET  -d "question_id=1" https://triviaapp-uzgdgxzwnd.now.sh/reminder
+
+# >>>>>>>>>> test UPDATE
+curl -i -X POST -d 'find={"email":"matt@example.com"}&update={"$set":{"password":"654321"}}' https://triviaapp-uzgdgxzwnd.now.sh/user
+curl -i -X POST -d 'find={"question_id":"1"}&update={"$set":{"state":"3"}}' https://triviaapp-uzgdgxzwnd.now.sh/reminder
+
+# >>>>>>>>>> test DELETE
+
+curl -i -X DELETE -d 'find={"email":"matt@example.com"}&delete=true' https://triviaapp-uzgdgxzwnd.now.sh/user
+curl -i -X DELETE -d 'find={"question_id":"1"}&delete=true' https://triviaapp-uzgdgxzwnd.now.sh/reminder
+
+*/

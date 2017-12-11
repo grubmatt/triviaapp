@@ -1,0 +1,147 @@
+body {
+  font-family: "Helvetica", "Arial", sans-serif;
+}
+
+h2 {
+  color: #2F343B;
+}
+
+a {
+  text-decoration: none;
+  justify-self: center;
+  padding: 2em;
+  color: #2F343B;
+}
+
+li {
+  color: #2F343B;
+  list-style: none;
+  border-radius: 15px;
+  font-size: 20px;
+  padding: 1em;
+  border: 2px solid #1695A3;
+  justify-self: center;
+  text-align: center;
+  cursor: pointer;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 0.5fr 0.25fr 1fr 1fr 0.5fr;
+  grid-gap: 20px;
+  justify-content: center;
+}
+
+#title {
+  display: inline;
+}
+
+#navbar {
+  grid-column-start: 1;
+  grid-column-end: 13; 
+  padding-bottom: 1em;
+  border-bottom: 3px solid #1695A3;
+}
+
+#navbar a {
+  font-size: 20px;
+}
+
+#page-title {
+  grid-row-start: 3;
+  grid-column-start: 3;
+  grid-column-end: 11;
+  text-align: center;
+  border-bottom: 2px solid #1695A3;
+  align-self: center;
+}
+
+#answers {
+  grid-row-start: 4;
+  grid-column-start: 2;
+  grid-column-end: 12;
+}
+
+#tf {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+}
+
+#multipart {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: #1695A3;
+}
+
+.modal-body {
+  text-align: center;
+  padding: 2em 1em;
+}
+
+.modal-footer {
+    text-align: center;
+    padding: 1em 1em;
+    background-color: #1695A3;
+}

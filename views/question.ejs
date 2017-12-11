@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="question.css">
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>
+    <script type="text/javascript" src="question.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div id="navbar">
+        <a href="/"><h1 id="title">SR Trivia</h1></a>
+        <span id="navbar-actions">
+          <a href="/reminders">Reminders</a>
+          <a href="/account">Account</a>
+        </span>
+      </div>
+      <div id="page-title"><h2><%= decodeURI(question) %></h2></div>
+      <div id="answers">
+        <% if(type=="boolean") { %>
+          <ul id="tf">
+            <li>True</li>
+            <li>False</li>
+          </ul>
+        <% } else { %>
+          <ul id="multipart">
+            <% for (let i=0; i < answers.length; i++) { %>
+              <li><%= decodeURIComponent(answers[i]) %></li>
+            <% }; %>
+          </ul>
+        <% } %>
+      </div>
+    </div>
+
+
+
+
+    <div hidden="true" id="modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="close">&times;</span>
+          <h2 id="modal-header">Modal Header</h2>
+        </div>
+        <div class="modal-body">
+          <p id="modal-text"></p>
+        </div>
+        <div class="modal-footer">
+          <a href="/reminder/create">Create Reminder</a>
+          <a href="/question?category=<%= category%>">Next Question</a>
+        </div>
+      </div>
+    </div>
+    <input type="hidden" id="answer" name="answer" value="<%= answer %>">
+  </body>
+</html>
