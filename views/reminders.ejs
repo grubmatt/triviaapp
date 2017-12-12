@@ -25,15 +25,13 @@
         <table id="reminderTable">
           <thead>
             <th>Question</th>
-            <th>Correct Answer</th>
             <th>Next Reminder</th>
             <th>Remove</th>
           </thead>
           <tbody>
             <% for (let i=0; i < reminders.length; i++) { %>
               <tr>
-                <td><%= decodeURIComponent(reminders[i].question) %></td>
-                <td><%= decodeURIComponent(reminders[i].correct_answer) %></td>
+                <td><a href="/question/<%= reminders[i]._id %>"><%= decodeURIComponent(reminders[i].question) %></a></td>
                 <td><%= reminders[i].next_reminder %></td>
                 <td><a href="/reminder/delete/<%= reminders[i]._id %>">Remove</a></td>
               </tr>

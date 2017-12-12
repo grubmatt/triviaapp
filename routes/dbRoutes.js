@@ -10,6 +10,7 @@ exports.init = function(app) {
 
   app.get("/", checkAuthentication, index);
   app.get("/question", checkAuthentication, getQuestion);
+  app.get("/question/:id", checkAuthentication, displayReminder);
   app.get("/reminders", checkAuthentication, getReminders);
   app.get("/reminder/delete/:id", checkAuthentication, deleteReminder);
   app.post("/reminder/create", checkAuthentication, createReminder);
@@ -46,14 +47,28 @@ createReminder = function(req, res) {
   });
 }
 
-deleteReminder = function(req, res){
+deleteReminder = function(req, res) {
   var o_id = new mongo.ObjectID(req.params.id);
-  var filter = {"_id": o_id};
-  console.log(filter);
 
-  reminderModel.delete(filter, function(status){
+  reminderModel.delete({"_id": o_id}, function(status){
     console.log(status);
     res.redirect("/reminders");
+  });
+}
+
+displayReminder = function(req, res) {
+  var o_id = new mongo.ObjectID(req.params.id);
+
+  reminderModel.retrieve({"_id": o_id}, function(reminder) {
+    res.render("question", {title: "Trivia Game", 
+      question: unescape(reminder[0].question),
+      type: reminder[0].type,
+      answers: reminder[0].answers.split(","),
+      answer: reminder[0].correct_answer,
+      category: reminder[0].category,
+      user_id: req.session.passport.user._id,
+      reminder: true
+    });
   });
 }
 
@@ -77,7 +92,8 @@ function getQuestionHelper(req, res) {
       answers: randomizeAnswers(data.results[0]),
       answer: data.results[0].correct_answer,
       category: req.query.category,
-      user_id: req.session.passport.user._id
+      user_id: req.session.passport.user._id,
+      reminder: false
     });
   });
 }

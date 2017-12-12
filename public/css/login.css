@@ -50,25 +50,25 @@ a.button {
 
 #username {
   grid-row-start: 3;
-  grid-column-start: 4;
-  grid-column-end: 6; 
+  grid-column-start: 2;
+  grid-column-end: 8; 
   justify-self: center;
   align-self: center;
 }
 
 #password {
   grid-row-start: 4;
-  grid-column-start: 4;
-  grid-column-end: 6;
+  grid-column-start: 2;
+  grid-column-end: 8;
   justify-self: center;
   align-self: center;
 }
 
 #submit {
   grid-row-start: 5;
-  grid-column-start: 4;
+  grid-column-start: 2;
   grid-column-end: 5;
-  justify-self: center;
+  justify-self: end;
   align-self: center;
 }
 
@@ -85,7 +85,7 @@ a.button {
 #create {
   grid-row-start: 5;
   grid-column-start: 5;
-  grid-column-end: 6;
-  justify-self: center;
+  grid-column-end: 8;
+  justify-self: start;
   align-self: center;
 }

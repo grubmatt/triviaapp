@@ -34,7 +34,9 @@
         <% } %>
       </div>
     </div>
-    <form action="/reminder/create" method="post">
+    <% if(!reminder) { %>
+      <form action="/reminder/create" method="post">
+    <% } %>
     <div hidden="true" id="modal" class="modal">
       <div class="modal-content">
         <div class="modal-header">
@@ -44,18 +46,24 @@
           <p id="modal-text"></p>
         </div>
         <div class="modal-footer">
+          <% if(!reminder) { %>
             <input hidden="true" name="question" value="<%= question %>">
+            <input hidden="true" name="type" value="<%= type %>">
+            <input hidden="true" name="category" value="<%= category %>">
             <input hidden="true" name="answers" value="<%= answers %>">
             <input hidden="true" name="correct_answer" value="<%= answer %>">
             <input hidden="true" name="state" value="0">
             <input hidden="true" name="next_reminder" value="12/12/2017">
             <input hidden="true" name="user_id" value="<%= user_id %>">
             <input id="submit" type="submit" data-dismiss="modal" value="Create Reminder"/>
+          <% } %>
           <a href="/question?category=<%= category %>">Next Question</a>
         </div>
       </div>
     </div>
-    </form>
+    <% if(!reminder) { %>
+      </form>
+    <% } %>
     <input type="hidden" id="answer" name="answer" value="<%= answer %>">
   </body>
 </html>
