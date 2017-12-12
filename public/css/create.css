@@ -4,6 +4,8 @@ body {
 
 h1 {
   color: #2F343B;
+  display: inline;
+  padding-left: 1em;
 }
 
 a {
@@ -31,13 +33,14 @@ a.button {
 .container {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: 0.5fr .6fr .6fr .6fr .8fr;
+  grid-template-rows: 0.5fr .25fr .75fr .75fr 1fr;
   grid-gap: 20px;
 }
 
 #navbar {
   grid-column-start: 1;
   grid-column-end: 13; 
+  padding-bottom: 1em;
   border-bottom: 3px solid #1695A3;
 }
 
