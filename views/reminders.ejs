@@ -4,13 +4,6 @@
     <title><%= title %></title>
     <link rel="stylesheet" type="text/css" href="/css/layouts/main.css">
     <link rel="stylesheet" type="text/css" href="/css/reminders.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
-    <script
-      src="https://code.jquery.com/jquery-3.2.1.min.js"
-      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-      crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="/js/reminders.js"></script>
   </head>
   <body>
     <div class="container">
@@ -23,20 +16,18 @@
           <a href="/logout">Log Out</a>
         </div>
       </div>
-      <div class="page-title"><h1>Reminders</h1></div>
+      <div class="page-title"><h1>Saved Questions</h1></div>
       <div id="reminders">
         <table id="reminderTable">
           <thead>
             <th>Question</th>
-            <th>Next Reminder</th>
             <th>Delete</th>
           </thead>
           <tbody>
             <% for (let i=0; i < reminders.length; i++) { %>
               <tr>
-                <td><a href="/question/<%= reminders[i]._id %>"><%= decodeURIComponent(reminders[i].question) %></a></td>
-                <td><%= reminders[i].next_reminder %></td>
-                <td><a class="delete" href="/reminder/delete/<%= reminders[i]._id %>">Delete</a></td>
+                <td class="left-align"><a href="/question/<%= reminders[i]._id %>"><%= decodeURIComponent(reminders[i].question) %></a></td>
+                <td class="center-align"><a class="delete" href="/reminder/delete/<%= reminders[i]._id %>">Delete</a></td>
               </tr>
             <% } %>
           </tbody>

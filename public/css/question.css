@@ -3,27 +3,32 @@ li {
   list-style: none;
   border-radius: 15px;
   font-size: 20px;
-  padding: 1em;
+  padding-top: 2em;
   border: 2px solid lightskyblue;
   justify-self: center;
   text-align: center;
   cursor: pointer;
+
+  width: 100%;
+  height: 100%;
 }
 
 #answers {
   grid-column-start: 2;
   grid-column-end: 12;
+  align-self: center;
+  padding-bottom: 2em;
 }
 
 #tf {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1.5fr);
   grid-gap: 20px;
 }
 
 #multipart {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 1.5fr);
   grid-gap: 20px;
 }
 
@@ -55,6 +60,10 @@ li {
   padding: 1em 2em;
   font-size: 13px;
   background-color: coral;
+}
+
+.container {
+  grid-template-rows: 0.5fr 1fr 3fr 0.5fr
 }
 
 .modal {

@@ -19,9 +19,5 @@
   border-radius: 15px;
   border: 1px solid lightskyblue;
   text-align: center;
-  padding: 1em 2em;
-}
-
-.container {
-  grid-template-rows: 0.5fr 1.5fr 2.5fr 0.5fr;
+  padding: 2em 2em;
 }

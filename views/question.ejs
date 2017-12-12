@@ -17,7 +17,7 @@
           <a href="/"><h1>SR Trivia</h1></a>
         </div>
         <div class="navbar-actions">
-          <a href="/reminders">Reminders</a>
+          <a href="/reminders">Saved Questions</a>
           <a href="/logout">Log Out</a>
         </div>
       </div>
@@ -59,10 +59,10 @@
             <input hidden="true" name="state" value="0">
             <input hidden="true" name="next_reminder" value="12/12/2017">
             <input hidden="true" name="user_id" value="<%= user_id %>">
-            <input id="submit" type="submit" data-dismiss="modal" value="Create Reminder"/>
-            <a id="reminders" hidden="true" href="/reminders">Show Reminders</a>
+            <input id="submit" type="submit" data-dismiss="modal" value="Save Question for Later!"/>
+            <a id="reminders" hidden="true" href="/reminders">Show Saved Questions</a>
           <% } else { %>
-            <a id="reminders" href="/reminders">Show Reminders</a>
+            <a id="reminders" href="/reminders">Show Saved Questions</a>
           <% } %>
           <a id="nextQuestion" href="/question/new/<%= category %>">Next Question</a>
         </div>

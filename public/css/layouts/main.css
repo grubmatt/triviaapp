@@ -1,5 +1,5 @@
 body {
-  font-family: "Helvetica", "Arial", sans-serif;
+  font-family: "Avenir", "Arial", sans-serif;
 }
 
 h1 {
@@ -21,7 +21,7 @@ a {
 .container {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 0.5fr 2fr 2fr 0.5fr;
+  grid-template-rows: 0.5fr 1fr 3fr 0.5fr;
   grid-gap: 20px;
   height: 100vh;
 }
@@ -55,6 +55,7 @@ a {
 
   justify-self: start;
   align-self: center;
+  border-bottom: 2px solid #E3F1D5;
 }
 
 .title h1 {
@@ -70,8 +71,9 @@ a {
 }
 
 .navbar-actions a {
-  border-left: 0.75px solid #2F343B;
-  padding: 0.5em;
+  border-left: 2px solid #E3F1D5;
+  padding-top: 1em;
+  padding-bottom: 1em;
 }
 
 .page-title {
@@ -79,7 +81,7 @@ a {
   grid-column-end: 11;
   text-align: center;
   border-bottom: 2px solid lightskyblue;
-  align-self: center;
+  align-self: end;
 }
 
 .footer {

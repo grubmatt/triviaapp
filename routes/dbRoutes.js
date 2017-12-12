@@ -3,6 +3,8 @@ var userModel = require("../models/userModel.js");
 var reminderModel = require("../models/reminderModel.js");
 const trivia = require("../models/triviaAPI.js")
 
+var token;
+
 exports.init = function(app) {
   var passport = app.get('passport');
 
@@ -73,7 +75,18 @@ displayReminder = function(req, res) {
 
 // Questions
 getNewQuestion = function(req, res) {
-  trivia.getQuestions(req.session.passport.user.token, req.params.category, function(data) {
+  if (!token) {
+    trivia.getSessionToken(function(result) {
+      token = result;
+      getQuestionHelper(req, res)
+    });
+  } else {
+    getQuestionHelper(req, res)
+  }
+}
+
+function getQuestionHelper(req, res) {
+  trivia.getQuestions(token, req.params.category, function(data) {
     res.render("question", {title: "Trivia Game", 
       question: unescape(data.results[0].question),
       type: data.results[0].type,
@@ -93,11 +106,8 @@ createUser = function(req, res) {
     return;
   }
 
-  trivia.getSessionToken(function(result) {
-    req.body.token = result;
-    userModel.create(req.body, function(result) {
-      res.redirect("/login.html");
-    });
+  userModel.create(req.body, function(result) {
+    res.redirect("/login.html");
   });
 }
 
@@ -114,6 +124,13 @@ function randomizeAnswers(question) {
   var answers = question.incorrect_answers;
   answers.push(question.correct_answer);
   
+  for(let i = 0; i < answers.length; i++) {
+    let j = Math.floor(Math.random() * answers.length);
+    let temp = answers[i];
+    answers[i] = answers[j];
+    answers[j] = temp;
+  }
+
   return answers;
 }
 

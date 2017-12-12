@@ -1,9 +1,50 @@
+table { 
+  border-spacing: 1; 
+  border-collapse: collapse; 
+  background:white;
+  border-radius:6px;
+  overflow:hidden;
+  max-width:800px; 
+  width:100%;
+  margin:0 auto;
+  position:relative;
+}
+
+tbody tr { 
+  height: 48px; 
+  border-bottom: 1px solid #E3F1D5;
+  border-right: 2px dashed #E3F1D5;
+  border-left: 2px dashed #E3F1D5;
+}
+tbody {
+  border-bottom: 2px dashed #E3F1D5;
+}
+
+thead tr { 
+  height: 60px;
+  background: lightskyblue;
+  font-size: 16px;
+}
+
+td {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+td a {
+  padding-left: 0px;
+}
+
 #reminders {
   grid-column-start: 3;
   grid-column-end: 11; 
 
-  padding-top: 3em;
   text-align: center;
+}
+
+#reminderTable {
+  margin-top: 1.5em;
+  width: 100%;
 }
 
 .delete {
@@ -16,6 +57,10 @@
   background-color: coral;
 }
 
-.container {
-  grid-template-rows: 0.5fr 1fr 4fr 0.5fr;
+.left-align {
+  text-align: left;
+}
+
+.center-align {
+  text-align: center;
 }

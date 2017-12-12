@@ -16,6 +16,6 @@ $(document).ready(function() {
   $("input").click(function() {
     $("#submit").hide();
     $("#reminders").show();
-    alert("Reminder Created!");
+    alert("Question Saved for Later!");
   });
 });
