@@ -30,11 +30,6 @@ li {
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: 0.5fr 0.25fr 1fr 1fr 0.5fr;
   grid-gap: 20px;
-  justify-content: center;
-}
-
-#title {
-  display: inline;
 }
 
 #navbar {
@@ -42,10 +37,30 @@ li {
   grid-column-end: 13; 
   padding-bottom: 1em;
   border-bottom: 3px solid #1695A3;
+
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
 }
 
 #navbar a {
   font-size: 20px;
+}
+
+#title {
+  grid-column-start: 1;
+  grid-column-end: 7; 
+}
+
+#title h1 {
+  display: inline;
+}
+
+#navbar-actions {
+  grid-column-start: 7;
+  grid-column-end: 13; 
+
+  justify-self: end;
+  align-self: center;
 }
 
 #page-title {
