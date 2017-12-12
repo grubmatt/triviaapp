@@ -1,8 +1,21 @@
 #reminders {
-  grid-row-start: 4;
   grid-column-start: 3;
   grid-column-end: 11; 
 
   padding-top: 3em;
   text-align: center;
+}
+
+.delete {
+  border-color: coral;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  padding: .5em 1em;
+  font-size: 13px;
+  background-color: coral;
+}
+
+.container {
+  grid-template-rows: 0.5fr 1fr 4fr 0.5fr;
 }

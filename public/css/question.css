@@ -4,14 +4,13 @@ li {
   border-radius: 15px;
   font-size: 20px;
   padding: 1em;
-  border: 2px solid #1695A3;
+  border: 2px solid lightskyblue;
   justify-self: center;
   text-align: center;
   cursor: pointer;
 }
 
 #answers {
-  grid-row-start: 4;
   grid-column-start: 2;
   grid-column-end: 12;
 }
@@ -26,6 +25,36 @@ li {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 20px;
+}
+
+#submit {
+  border-color: coral;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  padding: 1em 2em;
+  font-size: 13px;
+  background-color: coral;
+}
+
+#nextQuestion {
+  border-color: lightgreen;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  padding: 1em 2em;
+  font-size: 13px;
+  background-color: lightgreen;
+}
+
+#reminders {
+  border-color: coral;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  padding: 1em 2em;
+  font-size: 13px;
+  background-color: coral;
 }
 
 .modal {
@@ -57,20 +86,9 @@ li {
   animation-duration: 0.4s
 }
 
-/* Add Animation */
-@-webkit-keyframes animatetop {
-  from {top:-300px; opacity:0} 
-  to {top:0; opacity:1}
-}
-
-@keyframes animatetop {
-  from {top:-300px; opacity:0}
-  to {top:0; opacity:1}
-}
-
 .modal-header {
   padding: 2px 16px;
-  background-color: #1695A3;
+  background-color: lightskyblue;
   text-align: center;
 }
 
@@ -82,5 +100,16 @@ li {
 .modal-footer {
   text-align: center;
   padding: 1em 1em;
-  background-color: #1695A3;
+  background-color: lightskyblue;
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
 }

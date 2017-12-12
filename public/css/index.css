@@ -1,19 +1,27 @@
 #categories {
-  grid-row-start: 4;
   grid-column-start: 2;
   grid-column-end: 12;
 
-  padding-top: 3em;
-
   justify-self: center;
-  align-self: start;
+  align-self: center;
 
   display: grid;
-  grid-template-columns: repeat(5, 2fr);
+  grid-template-columns: repeat(3, 3fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-gap: 20px;
 }
 
 #categories a {
-  border-radius: 15px;
   font-size: 20px;
-  border: 1px solid #1695A3;
+}
+
+.category {
+  border-radius: 15px;
+  border: 1px solid lightskyblue;
+  text-align: center;
+  padding: 1em 2em;
+}
+
+.container {
+  grid-template-rows: 0.5fr 1.5fr 2.5fr 0.5fr;
 }

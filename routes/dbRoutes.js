@@ -1,20 +1,19 @@
 var mongo = require('mongodb');
-
 var userModel = require("../models/userModel.js");
 var reminderModel = require("../models/reminderModel.js");
 const trivia = require("../models/triviaAPI.js")
-var token = "";
 
 exports.init = function(app) {
   var passport = app.get('passport');
 
   app.get("/", checkAuthentication, index);
-  app.get("/question", checkAuthentication, getQuestion);
+  app.get("/question/new/:category", checkAuthentication, getNewQuestion);
   app.get("/question/:id", checkAuthentication, displayReminder);
   app.get("/reminders", checkAuthentication, getReminders);
   app.get("/reminder/delete/:id", checkAuthentication, deleteReminder);
   app.post("/reminder/create", checkAuthentication, createReminder);
 
+  app.get("/user/delete", checkAuthentication, deleteUser)
   app.post("/user/create", createUser);
   app.post("/login",
     passport.authenticate("local", {
@@ -26,7 +25,7 @@ exports.init = function(app) {
 }
 
 index = function(req, res) {
-  res.render("index", {title: "Trivia Game"})
+  res.render("index", {title: "Trivia Game", categories: trivia.getCategories()})
 }
 
 // Reminders
@@ -73,36 +72,18 @@ displayReminder = function(req, res) {
 }
 
 // Questions
-getQuestion = function(req, res) {
-  if(token == "") {
-    trivia.getSessionToken(function(result) {
-      token = result;
-      getQuestionHelper(req, res);
-    });
-  } else {
-    getQuestionHelper(req, res);
-  }
-}
-
-function getQuestionHelper(req, res) {
-  trivia.getQuestions(token, req.query.category, function(data) {
+getNewQuestion = function(req, res) {
+  trivia.getQuestions(req.session.passport.user.token, req.params.category, function(data) {
     res.render("question", {title: "Trivia Game", 
       question: unescape(data.results[0].question),
       type: data.results[0].type,
       answers: randomizeAnswers(data.results[0]),
       answer: data.results[0].correct_answer,
-      category: req.query.category,
+      category: req.params.category,
       user_id: req.session.passport.user._id,
       reminder: false
     });
   });
-}
-
-function randomizeAnswers(question) {
-  var answers = question.incorrect_answers;
-  answers.push(question.correct_answer);
-  
-  return answers;
 }
 
 // Users and Authentication
@@ -112,9 +93,28 @@ createUser = function(req, res) {
     return;
   }
 
-  userModel.create(req.body, function(result) {
-    res.redirect("/login.html");
+  trivia.getSessionToken(function(result) {
+    req.body.token = result;
+    userModel.create(req.body, function(result) {
+      res.redirect("/login.html");
+    });
   });
+}
+
+deleteUser = function(req, res){
+  var o_id = new mongo.ObjectID(req.session.passport.user._id);
+
+  userModel.delete({"_id": o_id}, function(status){
+    res.render("message", {title: "Trivia Game", obj: status});  
+  });
+}
+
+// Utility Functions
+function randomizeAnswers(question) {
+  var answers = question.incorrect_answers;
+  answers.push(question.correct_answer);
+  
+  return answers;
 }
 
 function checkAuthentication(req, res, next) {
@@ -128,71 +128,4 @@ function checkAuthentication(req, res, next) {
 function doLogout(req, res) {
   req.logout();
   res.redirect("/login.html");
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-retrieveUser = function(req, res) {
-  userModel.retrieve(req.query, function(data) {
-    if (data.length) {
-      res.render("results", {title: "Trivia Game", obj: data})
-    }
-
-    var message = "No documents with "+JSON.stringify(req.query)+
-                  " in collection " + req.params.collection + " found.";
-    res.render("message", {title: "Trivia Game", obj: message});
-  });
-}
-
-updateUser = function(req, res){
-  if(!req.body.update) {
-    res.render("message", {title: "Trivia Game", obj: "No update operation defined"});
-    return;
-  }
-
-  var filter = req.body.find ? JSON.parse(req.body.find) : {};
-  var update = JSON.parse(req.body.update);
-
-  userModel.update(filter, update, function(status){
-    res.render("message", {title: "Trivia Game", obj: status});  
-  });
-}
-
-deleteUser = function(req, res){
-  if(!req.body.delete) {
-    res.render("message", {title: "Trivia Game", obj: "No delete operation defined"});
-    return;
-  }
-
-  var filter = req.body.find ? JSON.parse(req.body.find) : {};
-
-  userModel.delete(filter, function(status){
-    res.render("message", {title: "Trivia Game", obj: status});  
-  });
-}
-
-updateReminder = function(req, res){
-  if(!req.body.update) {
-    res.render("message", {title: "Trivia Game", obj: "No update operation defined"});
-    return;
-  }
-
-  var filter = req.body.find ? JSON.parse(req.body.find) : {};
-  var update = JSON.parse(req.body.update);
-
-  reminderModel.update(filter, update, function(status){
-    res.render("message", {title: "Trivia Game", obj: status});  
-  });
 }

@@ -36,6 +36,7 @@
           </ul>
         <% } %>
       </div>
+      <div class="footer"></div>
     </div>
     <% if(!reminder) { %>
       <form action="/reminder/create" method="post">
@@ -63,7 +64,7 @@
           <% } else { %>
             <a id="reminders" href="/reminders">Show Reminders</a>
           <% } %>
-          <a href="/question?category=<%= category %>">Next Question</a>
+          <a id="nextQuestion" href="/question/new/<%= category %>">Next Question</a>
         </div>
       </div>
     </div>

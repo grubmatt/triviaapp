@@ -20,28 +20,34 @@ input {
 
 a.button {
   text-decoration: none;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  padding: 1em 2em;
   font-size: 13px;
-  padding: 1em;
-  border-radius: 3px;
-  border: 2px solid paleturquoise;
-  background-color: paleturquoise ;
-  color:  #2F343B;
+  border-color: lightsalmon;
+  background-color: lightsalmon;
 }
 
 .container {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 0.5fr 1.5fr .75fr .75fr 1fr;
+  grid-template-rows: 0.5fr 1fr 0.5fr 0.5fr 1fr 0.5fr;
   grid-gap: 20px;
+  height: 100vh;
 }
 
 .navbar {
   grid-column-start: 1;
   grid-column-end: 13; 
-  padding-bottom: 1em;
-  border-bottom: 3px solid #1695A3;
+  border-bottom: 3px solid lightskyblue;
+  margin-top: -15px;
   margin-left: -10px;
+  padding-bottom: 1em;
+  padding-top: 1em;
   margin-right: -10px;
+
+  background-color: lightskyblue;
 }
 
 .navbar a {
@@ -57,7 +63,7 @@ a.button {
   grid-column-start: 4;
   grid-column-end: 10;
   text-align: center;
-  border-bottom: 2px solid #1695A3;
+  border-bottom: 2px solid lightskyblue;
   align-self: center;
 }
 
@@ -76,11 +82,24 @@ a.button {
 }
 
 .submit input {
-  text-decoration: none;
+  border-color: lightgreen;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  padding: 1em 2em;
   font-size: 13px;
-  padding: 1em;
-  border-radius: 3px;
-  border: 2px solid lightgreen;
   background-color: lightgreen;
-  color:  #2F343B;
+}
+
+.footer {
+  grid-column-start: 1;
+  grid-column-end: 13;
+  width: 100%;
+  height: 100%;
+
+  margin-left: -10px;
+  padding-bottom: 3em;
+  padding-right: 2em;
+
+  background-color: lightskyblue;
 }

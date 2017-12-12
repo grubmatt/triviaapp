@@ -18,12 +18,13 @@
       </div>
       <div class="page-title"><h1>Categories</h1></div>
       <div id="categories">
-        <a href="/question?category=Film">Film</a>
-        <a href="/question?category=Computer">Computer</a>
-        <a href="/question?category=History">History</a>
-        <a href="/question?category=Politics">Politics</a>
-        <a href="/question?category=Animals">Animals</a>
+        <% for (var category in categories) { %>
+          <div class="category">
+            <a href="/question/new/<%= categories[category]%>"><%= category %></a>
+          </div>
+        <% } %>
       </div>
+      <div class="footer"></div>
     </div>
   </body>
 </html>
