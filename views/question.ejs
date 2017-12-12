@@ -58,6 +58,9 @@
             <input hidden="true" name="next_reminder" value="12/12/2017">
             <input hidden="true" name="user_id" value="<%= user_id %>">
             <input id="submit" type="submit" data-dismiss="modal" value="Create Reminder"/>
+            <a id="reminders" hidden="true" href="/reminders">Show Reminders</a>
+          <% } else { %>
+            <a id="reminders" href="/reminders">Show Reminders</a>
           <% } %>
           <a href="/question?category=<%= category %>">Next Question</a>
         </div>
