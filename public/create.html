@@ -2,24 +2,25 @@
 <html>
 <head>
   <title> SR Trivia Login </title>
-  <link rel="stylesheet" href="/css/create.css">
+  <link rel="stylesheet" type="text/css" href="/css/layouts/authentication.css">
+  <link rel="stylesheet" type="text/css" href="/css/create.css">
 </head>
 <body>
   <form action="/user/create" method="post">
     <div class="container">
-      <div id="navbar">
-        <a href="/"><h1 id="title">SR Trivia</h1></a> 
+      <div class="navbar">
+        <a href="/"><h1 class="title">SR Trivia</h1></a> 
       </div>
-      <div id="page-title"><h1>Create User</h1></div>
-      <div id="username">
+      <div class="page-title"><h1>Create User</h1></div>
+      <div class="username">
         <label>Username:</label>
         <input type="text" name="username" required="true"/>
       </div>
-      <div id="password">
+      <div class="password">
         <label>Password:</label>
         <input type="password" name="password" required="true"/>
       </div>
-      <div id="submit">
+      <div class="submit">
         <input type="submit" value="Create"/>
       </div>
     </div>

@@ -2,20 +2,21 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" type="text/css" href="/css/layouts/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
   </head>
   <body>
     <div class="container">
-      <div id="navbar">
-        <div id="title">
+      <div class="navbar">
+        <div class="title">
           <a href="/"><h1>SR Trivia</h1></a>
         </div>
-        <div id="navbar-actions">
+        <div class="navbar-actions">
           <a href="/reminders">Reminders</a>
           <a href="/logout">Log Out</a>
         </div>
       </div>
-      <div id="page-title"><h1>Categories</h1></div>
+      <div class="page-title"><h1>Categories</h1></div>
       <div id="categories">
         <a href="/question?category=Film">Film</a>
         <a href="/question?category=Computer">Computer</a>

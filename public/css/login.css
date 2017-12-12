@@ -1,96 +1,11 @@
-body {
-  font-family: "Helvetica", "Arial", sans-serif;
-}
-
-h1 {
-  color: #2F343B;
-}
-
-a {
-  text-decoration: none;
-  justify-self: center;
-  align-self: center;
-  color: #2F343B;
-}
-
-input {
-  color: #2F343B;
-  font-size: 20px;
-}
-
-a.button {
-  text-decoration: none;
-  font-size: 13px;
-  padding: 1em;
-  border-radius: 3px;
-  border: 2px solid paleturquoise;
-  background-color: paleturquoise ;
-  color:  #2F343B;
-}
-
-.container {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 0.5fr 1.5fr .75fr .75fr 1fr;
-  grid-gap: 20px;
-}
-
-#navbar {
-  grid-column-start: 1;
-  grid-column-end: 13; 
-  padding-bottom: 1em;
-  border-bottom: 3px solid #1695A3;
-}
-
-#navbar a {
-  font-size: 20px;
-}
-
-#title {
-  display: inline;
-  padding-left: 1em;
-}
-
-#page-title {
-  grid-column-start: 4;
-  grid-column-end: 10;
-  text-align: center;
-  border-bottom: 2px solid #1695A3;
-  align-self: center;
-}
-
-#username {
-  grid-column-start: 2;
-  grid-column-end: 12; 
-  justify-self: center;
-  align-self: center;
-}
-
-#password {
-  grid-column-start: 2;
-  grid-column-end: 12; 
-  justify-self: center;
-  align-self: center;
-}
-
-#submit {
+.submit {
   grid-column-start: 2;
   grid-column-end: 7; 
   justify-self: end;
   align-self: center;
 }
 
-#submit input {
-  text-decoration: none;
-  font-size: 13px;
-  padding: 1em;
-  border-radius: 3px;
-  border: 2px solid lightgreen;
-  background-color: lightgreen;
-  color:  #2F343B;
-}
-
-#create {
+.create {
   grid-column-start: 7;
   grid-column-end: 12; 
   justify-self: start;

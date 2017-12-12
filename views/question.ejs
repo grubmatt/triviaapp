@@ -2,7 +2,8 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel="stylesheet" href="/css/question.css">
+    <link rel="stylesheet" type="text/css" href="/css/layouts/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/question.css">
     <script
       src="https://code.jquery.com/jquery-3.2.1.min.js"
       integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -11,16 +12,16 @@
   </head>
   <body>
     <div class="container">
-      <div id="navbar">
-        <div id="title">
+      <div class="navbar">
+        <div class="title">
           <a href="/"><h1>SR Trivia</h1></a>
         </div>
-        <div id="navbar-actions">
+        <div class="navbar-actions">
           <a href="/reminders">Reminders</a>
           <a href="/logout">Log Out</a>
         </div>
       </div>
-      <div id="page-title"><h2><%= decodeURI(question) %></h2></div>
+      <div class="page-title"><h2><%= decodeURI(question) %></h2></div>
       <div id="answers">
         <% if(type=="boolean") { %>
           <ul id="tf">
