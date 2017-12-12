@@ -1,7 +1,7 @@
 var passport = require("passport");
 var Strategy = require("passport-local").Strategy;
 var expressSession = require("express-session");
-var users = require("../models/userModel.js");
+var users = require("userModel.js");
 
 exports.init = function (app) {
   app.use(expressSession(

@@ -22,15 +22,6 @@ exports.retrieve = function(query, callback) {
   });
 }
 
-exports.update = function(filter, update, callback) {
-  mongoDB.collection(collection)
-    .updateMany(filter, update, {upsert: true}, function(err, status) {
-      if (err) doError(err);
-      callback("Modified " + status.modifiedCount 
-        + " and added " + status.upsertedCount + " documents.");
-    }); 
-}
-
 exports.delete = function(filter, callback) {
   mongoDB.collection(collection).deleteOne(filter, function(err, status) {
     if (err) doError(err);
