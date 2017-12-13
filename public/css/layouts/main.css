@@ -10,6 +10,10 @@ h2 {
   color: #2F343B;
 }
 
+h4 {
+  display: inline;
+}
+
 a {
   text-decoration: none;
   justify-self: center;
@@ -55,7 +59,7 @@ a {
 
   justify-self: start;
   align-self: center;
-  border-bottom: 2px solid #E3F1D5;
+  border-bottom: 2px solid white;
 }
 
 .title h1 {
@@ -71,7 +75,7 @@ a {
 }
 
 .navbar-actions a {
-  border-left: 2px solid #E3F1D5;
+  border-left: 2px solid white;
   padding-top: 1em;
   padding-bottom: 1em;
 }
