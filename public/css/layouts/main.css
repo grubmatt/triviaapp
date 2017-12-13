@@ -55,7 +55,7 @@ a {
 
 .title {
   grid-column-start: 1;
-  grid-column-end: 7; 
+  grid-column-end: 5; 
 
   justify-self: start;
   align-self: center;
@@ -67,7 +67,7 @@ a {
 }
 
 .navbar-actions {
-  grid-column-start: 7;
+  grid-column-start: 5;
   grid-column-end: 13; 
 
   justify-self: end;
